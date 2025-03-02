@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.views.generic.detail import DetailView
 from django.contrib.auth import login, logout, authenticate
-from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from .models import Book
 from .models import Library
 
@@ -31,7 +31,7 @@ def login_view(request):
 
 def logout_view(request):
     logout(request)
-    return render(request, "logout.html")
+    return redirect(request, "logout.html")
 
 def register_view(request):
     if request.method == "POST":

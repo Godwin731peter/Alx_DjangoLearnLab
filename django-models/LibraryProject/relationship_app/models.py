@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+from django.contrib.auth.decorators import permission_required
 
 # Create your models here.
 class Author(models.Model):

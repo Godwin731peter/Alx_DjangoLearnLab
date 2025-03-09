@@ -1,0 +1,17 @@
+# Role-Based Access Control in Django
+
+## Permissions
+- `can_view`: Allows viewing articles.
+- `can_create`: Allows creating new articles.
+- `can_edit`: Allows editing articles.
+- `can_delete`: Allows deleting articles.
+
+## Groups
+- `Viewers`: Can only view articles.
+- `Editors`: Can view, create, and edit articles.
+- `Admins`: Can view, create, edit, and delete articles.
+
+## How to Assign Users to Groups
+1. Log in to Django Admin.
+2. Go to the "Groups" section.
+3. Add users to the appropriate group.

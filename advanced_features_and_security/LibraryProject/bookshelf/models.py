@@ -66,3 +66,12 @@ class Article(models.Model):
 
     def __str__(self):
         return self.title
+
+class Book(models.Model):
+   title = models.CharField(max_length=255)
+   author = models.CharField(max_length=255)
+
+   class Meta:
+      permissions = [
+         ("can_view", "Can view books")
+      ]

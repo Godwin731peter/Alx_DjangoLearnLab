@@ -1,8 +1,8 @@
 from django.contrib.auth.decorators import permission_required
-from django.contrib.auth.mixins import PermissionRequiredMMixin
+from django.contrib.auth.mixins import PermissionRequiredMixin
 from django.views.generic import ListViews
 from django.shortcuts import render, get_object_or_404
-from .models import Article
+from .models import Article, Book
 
 # Create your views here.
 @permission_required('bookshelf.can_view', raise_exception=True)
@@ -28,11 +28,13 @@ def delete_article(request, article_id):
     # Redirect or return response
     pass
 
-from django.contrib.auth.mixins import PermissionRequiredMixin
-from django.views.generic import ListView
-from .models import Article
 
 class ArticleListView(PermissionRequiredMixin, ListView):
     model = Article
     template_name = "articles/list.html"
-    permission_required = "bookshelf.can_view"
+    permission_required = "bookshelf.can_view" 
+
+@permission_required('bookshelf.can_view', raise_exception=True)
+def book_list(request):
+    books = Book.objects.all()
+    return render(request, 'bookshelf/book_list.html', {'books': books})

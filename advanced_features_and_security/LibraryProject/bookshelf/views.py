@@ -38,3 +38,12 @@ class ArticleListView(PermissionRequiredMixin, ListView):
 def book_list(request):
     books = Book.objects.all()
     return render(request, 'bookshelf/book_list.html', {'books': books})
+
+
+def search_books(request):
+    form = BookSearchForm(request.GET)
+    books = Book.object.none()
+    if form.is_valid():
+        query = form.cleaned_data.get('query', '')
+        books = Book.objects.filter(title_icontains=query)
+    return render(request, 'bookshelf/book_list.html', {'form': form, 'books': books})

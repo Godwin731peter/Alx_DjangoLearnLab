@@ -26,6 +26,10 @@ SECRET_KEY = 'django-insecure-zwe5t6e2h*=15(-%0r_)-9s(oc&()wepoo(*azy%59_e#f+@lo
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
+# Support HTTPS when behind a proxy (e.g., Nginx, Apache)
+SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https")
+
+
 # Security Headers
 SECURE_BROWSER_XSS_FILTER = True
 X_FRAME_OPTIONS = 'DENY'

@@ -3,6 +3,7 @@ from django.contrib.auth.mixins import PermissionRequiredMixin
 from django.views.generic import ListViews
 from django.shortcuts import render, get_object_or_404
 from .models import Article, Book
+from .forms import ExampleForm
 
 # Create your views here.
 @permission_required('bookshelf.can_view', raise_exception=True)

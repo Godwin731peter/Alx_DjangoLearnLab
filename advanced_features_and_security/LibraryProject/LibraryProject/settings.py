@@ -41,10 +41,10 @@ CSP_SCRIPT_SRC = ("'SELF'", "'unsafe-inline'")
 CSP_STYLE_SRC = ("'self'", "'unsafe-inline'")
 
 # Other security settings
-ALLOWED_HOST = ['192.168.88.3']
+#ALLOWED_HOSTS = ['192.168.88.3']
 SECURE_SSL_REDIRECT = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['192.168.88.3']
 
 
 # Application definition
@@ -57,7 +57,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'bookshelf'
-    'relationship_app'
+    #'relationship_app'
 ]
 
 AUTHENTICATION_BACKENDS = [

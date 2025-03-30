@@ -2,7 +2,7 @@ from django.shortcuts import render
 from rest_framework import generics
 from rest_framework.permissions import IsAuthenticatedOrReadOnly, IsAuthenticated
 from serializers import BookSerializer
-from django_filters import rest_fraework
+from django_filters import rest_framework
 from .models import Book
 
 # Create your views here.

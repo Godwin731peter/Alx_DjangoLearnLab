@@ -26,7 +26,7 @@ class BookSerializer(serializers.ModelSerializer):
     
 class IsAdminOrReadOnly(permissions.BasePermission):
     # Read only for everyyone write permission for admin
-    def has_perission(self, request, view):
+    def has_permission(self, request, view):
         if request.method in permissions.SAFE_METHODS:
             return True
         return request.user and request.user.is_staff       

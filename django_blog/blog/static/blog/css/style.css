@@ -1,0 +1,18 @@
+body {
+  font-family: Arial, roboto;
+  margin: 15px;
+  padding: 20px;
+  background-color: #f4f4f4;
+}
+
+h1, h2 {
+  color: black;
+}
+
+.post {
+  margin-bottom: 15px;
+  padding: 16px;
+  background-color: white;
+  border-radius: 6px;
+  box-shadow: 0 4px 8px rgb(0, 0, 0, 0.1);
+}

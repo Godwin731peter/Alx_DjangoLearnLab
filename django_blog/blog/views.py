@@ -7,6 +7,7 @@ from django.views.generic import ListView, DetailView, CreateView, UpdateView, D
 from django.urls import reverse_lazy
 from .models import Post, Comment
 from .forms import CustomUserCreationForm, ProfileUpdateForm, CommentForm
+from django.db.models import Q
 
 # Create your views here.
 # registerong a user
@@ -64,7 +65,7 @@ class PostCreateView(LoginRequiredMixin, CreateView):
   template_name = 'blog/post_form.html'
 
   def form_valid(self, form):
-    for.instance.author = self.request.user
+    form.instance.author = self.request.user
     return super().form_valid(form)
   
 class PostUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
@@ -175,3 +176,16 @@ class CommentDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
     def test_func(self):
         comment = self.get_object()
         return self.request.user == comment.author
+
+def search_posts(request):
+    query = request.GET.get("q")
+    results = Post.objects.filter(
+        Q(title__icontains=query) |
+        Q(content__icontains=query) |
+        Q(tags__name__icontains=query)
+    ).distinct()
+    return render(request, 'blog/search_results.html', {'results': results, 'query': query})
+
+def posts_by_tag(request, tag_name):
+    posts = Post.objects.filter(tags__name=tag_name)
+    return render(request, 'blog/tag_posts.html', {'posts': posts, 'tag_name': tag_name})

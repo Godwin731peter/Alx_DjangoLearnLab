@@ -1,6 +1,11 @@
 <h2>Results for "{{ query }}":</h2>
+<form method="get" action="{% url 'search_posts' %}">
+  <input type="text" name="q" placeholder="Search blog...">
+  <button type="submit">Search</button>
+</form>
 {% for post in results %}
   <a href="{% url 'post-detail' post.pk %}">{{ post.title }}</a><br>
 {% empty %}
   <p>No results found.</p>
 {% endfor %}
+ 

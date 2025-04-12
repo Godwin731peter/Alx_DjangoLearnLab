@@ -2,3 +2,29 @@
   {{ form.as_p }}
   <button type="submit">Search</button>
 </form>
+
+
+
+class SignUpSerializer(serializers.ModelSerializer):
+  password = serializers.CharField(write_only=True)
+
+  class Meta:
+    model = CreateAccount
+    fields = ['id', 'user_name', 'age', 'gender', 'phone_number', 'password']
+
+  def validate(self, data):
+    if len(data['password']) < 8:
+      raise serializers.ValidationError("password needs to be atleast 8 characters long")
+    return data
+
+  def create(self, validated_date):
+    user = CreateAccount(
+      username=validated_data['username'],
+      age=validated_data['age'],
+      gender=validated_data['gender'],
+      phone_number=validated_data['phone_number']
+    )
+    user.set_password(validated_data['password'])
+    user.save()
+    return user
+  

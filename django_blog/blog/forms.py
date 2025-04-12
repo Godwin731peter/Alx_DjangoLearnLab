@@ -21,13 +21,13 @@ class ProfileUpdateForm(forms.ModelForm):
 # blog/forms.py
 
 class PostForm(forms.ModelForm):
-   tags = TagsField(widget=TagWidget())
+   tags = TagField(widget=TagWidget())
 
-    class Meta:
+   class Meta:
         model = Post
         fields = ['title', 'content', 'tags']
     
-    def save(self, commit=True):
+   def save(self, commit=True):
         instance = super().save(commit=False)
         if commit:
             instance.save()
